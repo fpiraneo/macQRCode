@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11134" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11134"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.2"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -673,7 +675,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="macQRCode" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -703,11 +705,109 @@
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="macQRCode" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="232"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ax7-Tv-Sbs">
+                                <rect key="frame" x="20" y="20" width="440" height="192"/>
+                                <subviews>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="s6b-Lh-nA5">
+                                        <rect key="frame" x="0.0" y="21" width="150" height="150"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="150" id="R4v-da-oXT"/>
+                                            <constraint firstAttribute="width" constant="150" id="pzE-9c-wrO"/>
+                                        </constraints>
+                                    </customView>
+                                    <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rsp-dM-KLs">
+                                        <rect key="frame" x="219" y="0.0" width="221" height="192"/>
+                                        <subviews>
+                                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cpt-eq-VJG">
+                                                <rect key="frame" x="0.0" y="24" width="221" height="168"/>
+                                                <subviews>
+                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lIw-pN-FZh">
+                                                        <rect key="frame" x="-6" y="140" width="119" height="32"/>
+                                                        <buttonCell key="cell" type="push" title="Start reading" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="x4G-nn-Ftt">
+                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                            <font key="font" metaFont="system"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="startReading:" target="XfG-lQ-9wD" id="9hx-wX-CBc"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eHS-6j-Btq">
+                                                        <rect key="frame" x="109" y="140" width="118" height="32"/>
+                                                        <buttonCell key="cell" type="push" title="Stop reading" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YI9-cQ-JMc">
+                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                            <font key="font" metaFont="system"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="stopReading:" target="XfG-lQ-9wD" id="Nza-kW-7sM"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <visibilityPriorities>
+                                                    <integer value="1000"/>
+                                                    <integer value="1000"/>
+                                                </visibilityPriorities>
+                                                <customSpacing>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                </customSpacing>
+                                            </stackView>
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="RBn-Ui-k4l">
+                                                <rect key="frame" x="-2" y="0.0" width="225" height="16"/>
+                                                <textFieldCell key="cell" selectable="YES" alignment="center" title="Your reading here" id="SP0-ir-IRq">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="RBn-Ui-k4l" secondAttribute="trailing" id="Rgl-Rs-G5Z"/>
+                                            <constraint firstItem="RBn-Ui-k4l" firstAttribute="leading" secondItem="Rsp-dM-KLs" secondAttribute="leading" id="X6z-im-V7r"/>
+                                            <constraint firstAttribute="bottom" secondItem="RBn-Ui-k4l" secondAttribute="bottom" id="xF5-Vn-RJO"/>
+                                        </constraints>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Rsp-dM-KLs" secondAttribute="bottom" id="9RX-Rd-QC8"/>
+                                    <constraint firstItem="Rsp-dM-KLs" firstAttribute="leading" secondItem="s6b-Lh-nA5" secondAttribute="trailing" id="Kew-GQ-DNI"/>
+                                    <constraint firstAttribute="trailing" secondItem="Rsp-dM-KLs" secondAttribute="trailing" id="Zvn-ib-9Lf"/>
+                                    <constraint firstItem="Rsp-dM-KLs" firstAttribute="top" secondItem="ax7-Tv-Sbs" secondAttribute="top" id="jm4-Tr-gzw"/>
+                                    <constraint firstItem="s6b-Lh-nA5" firstAttribute="centerY" secondItem="ax7-Tv-Sbs" secondAttribute="centerY" id="ykn-gK-yRB"/>
+                                </constraints>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="ax7-Tv-Sbs" secondAttribute="bottom" constant="20" id="FOC-1O-R5E"/>
+                            <constraint firstItem="ax7-Tv-Sbs" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="KJy-Jl-pnr"/>
+                            <constraint firstItem="ax7-Tv-Sbs" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="cNp-Xu-MqA"/>
+                            <constraint firstAttribute="trailing" secondItem="ax7-Tv-Sbs" secondAttribute="trailing" constant="20" id="ztk-7F-kOP"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cameraOutput" destination="s6b-Lh-nA5" id="sVp-uq-pE4"/>
+                        <outlet property="readText" destination="RBn-Ui-k4l" id="9jd-ir-Cfc"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
