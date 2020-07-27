@@ -62,6 +62,10 @@ class ViewController: NSViewController {
         videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession!)
         videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
         
+        // Initialize layer if not already
+        if cameraOutput.layer == nil {
+            cameraOutput.layer = CALayer()
+        }
         videoPreviewLayer?.frame = cameraOutput.layer!.bounds
         cameraOutput.layer!.addSublayer(videoPreviewLayer!)
         cameraOutput.layer!.borderColor = NSColor.systemGray.cgColor
